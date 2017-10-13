@@ -86,3 +86,62 @@ ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 - This is the only time in a React application that you will see standard DOM manipulation.
+
+## Component Lifecycle
+
+- Each component goes through a lifecycle from initialization to rendering and beyond.
+- Here is some additional information: https://reactjs.org/docs/react-component.html.
+- The most commonly used methods are `componentWillMount`, `render`, and `componentDidMount`.
+- As a reminder, these lifecycle methods can only be used in class-based components.
+
+## Component State
+
+## Props and Event Handling
+
+- Each component can have "props" associated with it, which essentially look like HTML attributes.
+- Props can pass data to components from data such as strings and objects, to functions.
+
+## Todo List Lab
+
+- We will be building a todo list with React.
+- The front end is already done for you here: https://github.com/arun-projects/Todo-List
+- Use each of the concepts we learned to make your app work.
+- **Bonus:** When each "done" button is clicked, create a strikethrough on the todo text.
+- **Super Bonus:** Persist your data using localStorage.
+
+## User Manager Code Along
+
+- We will be working together on a user manager application.
+- The front end is already done for you, and is located here: https://github.com/arun-projects/User-Manager.
+- We will be using the "Person API" from MyAPI: https://myapi-profstream.herokuapp.com.
+- We will create a new React application together using CRA.
+
+## HTTP Requests with Axios
+
+- Axios is a library that makes working with AJAX requests simple.
+- It is promise-based, so we can use the traditional `.then()` `.catch()` model of native JavaScript promises.
+- The documentation can be found here: https://github.com/axios/axios.
+- To use the library we will be first importing it:
+
+```javascript
+import axios from "axios";
+
+axios.request({
+    url: "endpoint url here",
+    method: "GET"
+})
+.then((response) => {
+    console.log(response.data);
+})
+.catch((err) => {
+    console.log(err);
+});
+```
+
+## Wine List Lab Part 1
+
+- In this lab we will be using React to send a GET request to pull a list of wines.
+- We will be using the MyAPI "Wine API" to build our functionality.
+- Set up a new React project and try to make a GET request to https://your-endpoint/wines.
+- Use the front end provided to display the wine data on the page: https://github.com/arun-projects/Wine-Manager.
+- Make a POST request to the same endpoint url with the data from the add wine modal window form to create a new wine.
