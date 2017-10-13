@@ -93,13 +93,74 @@ ReactDOM.render(<App />, document.getElementById("root"));
 - Here is some additional information: https://reactjs.org/docs/react-component.html.
 - The most commonly used methods are `componentWillMount`, `render`, and `componentDidMount`.
 - As a reminder, these lifecycle methods can only be used in class-based components.
-
-## Component State
+- Lifecycle methods are commonly used to perform setup and teardown operations within components.
+- A popular example is fetching data via AJAX on `componentDidMount`.
 
 ## Props and Event Handling
 
 - Each component can have "props" associated with it, which essentially look like HTML attributes.
 - Props can pass data to components from data such as strings and objects, to functions.
+- Let's see an example with a simple click event:
+
+```javascript
+import React, { Component } from "react";
+
+class ClickExample extends Component {
+    handleClick() {
+        alert("Button Clicked!");
+    }
+    
+    render() {
+        return (
+            <button onClick={this.handleClick.bind(this)}>Click Me</button>
+        );
+    }
+}
+
+export default ClickExample;
+```
+
+- Here the `.bind(this)` is used to maintain the class context when the event handler fires. This is very important in React.
+
+## Component State
+
+- Every class-based component maintains a "state", which controls how the virtual DOM, and thus the real DOM get updated.
+- Every class-based component has a `state` property that is accessible throughout the entire class, including all lifecycle methods.
+- Essentially, changes in state trigger a re-render of the component.
+- State can also be initialized in the constructor of the component class.
+- State is never mutated directly. Instead, a setter method called `.setState()` is used.
+- Here is an example:
+
+```javascript
+import React, { Component } from "react";
+
+class HelloWorld extends Component {
+    constructor() {
+        this.state = {
+            greeting: "Hello World!"
+        }
+    }
+    
+    handleClick() {
+        this.setState({
+            greeting: "Goodbye World!"
+        });
+    }
+    
+    render() {
+        return (
+            <div>{this.state.greeting}</div>
+            <div>
+                <button onClick={this.handleClick.bind(this)}>Greet</button>
+            </div>
+        );
+    }
+}
+
+export default HelloWorld;
+```
+
+- In this example, a click of the button will trigger a component refresh.
 
 ## Todo List Lab
 
@@ -138,6 +199,61 @@ axios.request({
 });
 ```
 
+## Forms in React
+
+- Forms take two forms in React - "controlled" and "non controlled".
+- Non controlled forms are those that are blank and accept new data to be submitted.
+- Controlled forms rely on existing data to populate the form fields, and the user generally has the option to edit these data. An example is an edit form that is pre-populated with data from an existing object.
+- Both types of forms require the component's state to be made aware of changes in the fields.
+- This process mimics a two-way data binding system found in other popular frameworks.
+- Let's see an example:
+
+```javascript
+import React, { Component } from "react";
+import update from "immutability-helper";
+
+class SampleForm extends Component {
+    constructor() {
+        this.state = {
+            firstname: "",
+            lastname: ""
+        };
+    }
+
+    handleChange(event) {
+        this.setState(update(this.state, {
+            $merge: {
+                [event.target.name]: event.target.value
+            }
+        }));
+    }
+    
+    handleSubmit(event) {
+        event.preventDefault();
+        
+        // Handle form submission here
+    }
+    
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit.bind(this)}>
+                <div>
+                    <input onChange={this.handleChange.bind(this)} name="firstname" type="text" />
+                </div>
+                <div>
+                    <input onChange={this.handleChange.bind(this)} name="lastname" type="text" />
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        );
+    }
+}
+
+export default SampleForm;
+```
+
 ## Wine List Lab Part 1
 
 - In this lab we will be using React to send a GET request to pull a list of wines.
@@ -145,3 +261,14 @@ axios.request({
 - Set up a new React project and try to make a GET request to https://your-endpoint/wines.
 - Use the front end provided to display the wine data on the page: https://github.com/arun-projects/Wine-Manager.
 - Make a POST request to the same endpoint url with the data from the add wine modal window form to create a new wine.
+
+## React Router V4
+
+## Wine List Lab Part 2
+
+- In this part we will use routing to add an edit wine page.
+- Here are the steps you will need to follow:
+	- Step 1: Create a route to `/wines/:id`.
+	- Step 2: Use the route parameter to make a GET request to `http://your-endpoint/wines/:id`.
+	- Step 3: Display wine data in the form on edit.html.
+	- Step 4: On submit of the form create a PUT request to the same URL as above to update the wine record.
