@@ -264,6 +264,33 @@ export default SampleForm;
 
 ## React Router V4
 
+- In order to implement routers in our React application, we will use React Router version 4.
+- This version is different from the previous versions in that it allows you to define routes inside components rather than as a separate configuration file.
+- To implement routing, we will need to import a few packages:
+
+```javascript
+import { Router, Route, Switch } from "react-router";
+import createBrowserHistory from "history/createBrowserHistory";
+
+const history = createBrowserHistory();
+
+<Router history={history}>
+    <Switch>
+        <Route exact path="/" component={Home} />
+    </Switch>
+</Router>
+```
+
+- Since these routes are just components themselves, they are generally included in a top-level component that is injected into the real DOM by ReactDOM.
+- `path` defines a path to match against for mounting a specific component. You can also use parameters like so:
+
+```javascript
+<Route exact path="/wines/:id" component={EditWine} />
+```
+
+- These parameters can be accessed by `this.props.match.params` in the appropriate class.
+- Note that parameters are only accessible in the component classes that are mounted via the router itself; not any child components.
+
 ## Wine List Lab Part 2
 
 - In this part we will use routing to add an edit wine page.
