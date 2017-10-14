@@ -2,6 +2,32 @@
 
 ## Testing Components with Enzyme and Jest
 
+- Testing React components can come in many different forms, but the most common way is to use AirBnb's Enzyme.
+- Enzyme essentially creates JSON representations of your components (snapshots), which are then checked against rendering that happens when the test is run.
+- For this testing we will need a few items to be installed:
+    - `enzyme`
+    - `enzyme-adapter-react-16`
+    - `react-test-renderer`
+- Let's see an example of testing our main App component:
+
+```javascript
+import React from "react";
+import { shallow, configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+configure({ adapter: new Adapter() });
+
+import App from "./App";
+
+describe("App Component", () => {
+
+    it("Matches snapshot", () => {
+        expect(shallow(<App />)).toMatchSnapshot();
+    });
+
+});
+```
+
 ## Wine List Lab Part 3
 
 - In this lab you will write tests for your components in the wine list.
@@ -11,12 +37,34 @@
 
 - There are many patterns in React, but one that is gaining popularity among all others is the Redux pattern.
 - Redux is a pattern and a library that allows state to be managed in one large store instead of state being managed at a component level.
+- Let's install the required dependencies:
+    - `redux`
+    - `react-redux`
+    - `redux-thunk`
 - In order to work with Redux, the first thing we must do is create a store:
 
 ```javascript
 import { createStore } from "redux";
 
 const store = createStore(reducerHere);
+```
+
+- This is the most basic store configuration, but normally you would want your store to also configure middleware to make Redux aware of routing changes and to use features like thunks:
+
+```javascript
+import { createStore, compose, applyMiddleware } from "redux";
+import createHistory from "history/createBrowserHistory";
+import { routerMiddleware } from "react-router-redux";
+import thunk from "redux-thunk";
+
+const history = createHistory();
+const reactRouterMiddleware = routerMiddleware(history);
+
+return createStore(
+    reducerHere,
+    null,
+    compose(applyMiddleware([thunk, reactRouterMiddleware]))
+);
 ```
 
 ## Redux Reducers
