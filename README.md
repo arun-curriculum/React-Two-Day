@@ -9,8 +9,8 @@
 - Component lifecycle
 - Props and event handling
 - Component state
-- HTTP requests with Axios
 - Forms (controlled vs. non-controlled)
+- HTTP requests with Axios
 - React Router V4
 
 ### [Day 2](day_2/)

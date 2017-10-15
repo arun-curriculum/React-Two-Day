@@ -33,7 +33,7 @@ describe("App Component", () => {
 - In this lab you will write tests for your components in the wine list.
 - Your job is to write the appropriate tests and run them via Jest.
 
-## Redux
+## Introduction to Redux
 
 - There are many patterns in React, but one that is gaining popularity among all others is the Redux pattern.
 - Redux is a pattern and a library that allows state to be managed in one large store instead of state being managed at a component level.
