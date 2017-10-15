@@ -162,43 +162,6 @@ export default HelloWorld;
 
 - In this example, a click of the button will trigger a component refresh.
 
-## Todo List Lab
-
-- We will be building a todo list with React.
-- The front end is already done for you here: https://github.com/arun-projects/Todo-List
-- Use each of the concepts we learned to make your app work.
-- **Bonus:** When each "done" button is clicked, create a strikethrough on the todo text.
-- **Super Bonus:** Persist your data using localStorage.
-
-## User Manager Code Along
-
-- We will be working together on a user manager application.
-- The front end is already done for you, and is located here: https://github.com/arun-projects/User-Manager.
-- We will be using the "Person API" from MyAPI: https://myapi-profstream.herokuapp.com.
-- We will create a new React application together using CRA.
-
-## HTTP Requests with Axios
-
-- Axios is a library that makes working with AJAX requests simple.
-- It is promise-based, so we can use the traditional `.then()` `.catch()` model of native JavaScript promises.
-- The documentation can be found here: https://github.com/axios/axios.
-- To use the library we will be first importing it:
-
-```javascript
-import axios from "axios";
-
-axios.request({
-    url: "endpoint url here",
-    method: "GET"
-})
-.then((response) => {
-    console.log(response.data);
-})
-.catch((err) => {
-    console.log(err);
-});
-```
-
 ## Forms in React
 
 - Forms take two forms in React - "controlled" and "non controlled".
@@ -252,6 +215,43 @@ class SampleForm extends Component {
 }
 
 export default SampleForm;
+```
+
+## Todo List Lab
+
+- We will be building a todo list with React.
+- The front end is already done for you here: https://github.com/arun-projects/Todo-List
+- Use each of the concepts we learned to make your app work.
+- **Bonus:** When each "done" button is clicked, create a strikethrough on the todo text.
+- **Super Bonus:** Persist your data using localStorage.
+
+## User Manager Code Along
+
+- We will be working together on a user manager application.
+- The front end is already done for you, and is located here: https://github.com/arun-projects/User-Manager.
+- We will be using the "Person API" from MyAPI: https://myapi-profstream.herokuapp.com.
+- We will create a new React application together using CRA.
+
+## HTTP Requests with Axios
+
+- Axios is a library that makes working with AJAX requests simple.
+- It is promise-based, so we can use the traditional `.then()` `.catch()` model of native JavaScript promises.
+- The documentation can be found here: https://github.com/axios/axios.
+- To use the library we will be first importing it:
+
+```javascript
+import axios from "axios";
+
+axios.request({
+    url: "endpoint url here",
+    method: "GET"
+})
+.then((response) => {
+    console.log(response.data);
+})
+.catch((err) => {
+    console.log(err);
+});
 ```
 
 ## Wine List Lab Part 1
