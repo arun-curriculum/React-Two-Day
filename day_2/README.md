@@ -62,8 +62,8 @@ const reactRouterMiddleware = routerMiddleware(history);
 
 return createStore(
     reducerHere,
-    null,
-    compose(applyMiddleware([thunk, reactRouterMiddleware]))
+    undefined,
+    compose(applyMiddleware(thunk, reactRouterMiddleware))
 );
 ```
 
