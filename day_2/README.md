@@ -49,6 +49,38 @@ import { createStore } from "redux";
 const store = createStore(reducerHere);
 ```
 
+- Next we have to create the reducer that will be responsible for changing the state:
+
+```javascript
+const reducer = (state, action) => {
+    switch(action.type) {
+        case "GREETING": {
+            return Object.assign({}, state, {
+                greeting: action.payload
+            });
+        }
+    }
+}
+```
+
+- We can subscribe to changes in the store via the `subscribe()` method:
+
+```javascript
+store.subscribe(() => {
+    console.log(store.getState());
+});
+```
+
+- Then when we are ready to change the state, we dispatch an action:
+
+```javascript
+store.dispatch({
+    type: "GREETING",
+    payload: "Hello World!"
+});
+```
+
+- This will trigger the reducer to update the state.
 - This is the most basic store configuration, but normally you would want your store to also configure middleware to make Redux aware of routing changes and to use features like thunks:
 
 ```javascript
